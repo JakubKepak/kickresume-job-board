@@ -6,7 +6,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   primary:
     'bg-coral text-white border border-coral hover:bg-coral-dark hover:border-coral-dark',
   secondary:
-    'bg-white text-coral border border-coral hover:bg-coral-light',
+    'bg-transparent text-coral border border-coral hover:bg-coral-light',
 }
 
 interface ButtonProps extends ComponentProps<'button'> {

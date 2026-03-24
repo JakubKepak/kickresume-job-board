@@ -1,6 +1,8 @@
 import { useState, useCallback } from 'react'
 import { SearchBar } from './components/SearchBar'
 import { JobList } from './components/JobList'
+import { JobDetail } from './components/JobDetail'
+import { JobDetailModal } from './components/JobDetailModal'
 import { useIsDesktop } from './hooks/useMediaQuery'
 import { useJobPosts } from './hooks/useJobPosts'
 
@@ -74,16 +76,26 @@ function App() {
             <div className="w-job-list shrink-0">
               <JobList {...jobListProps} />
             </div>
-            <div className="flex-1 sticky top-sticky-top max-h-[calc(100vh-var(--spacing-sticky-top))] overflow-y-auto">
-              <p className="text-text-secondary">
-                {selectedJobId
-                  ? `Detail for ${selectedJobId}`
-                  : 'Select a job to view details'}
-              </p>
+            <div className="flex-1 min-w-0 sticky top-sticky-top">
+              {selectedJobId ? (
+                <JobDetail jobId={selectedJobId} />
+              ) : (
+                <p className="text-sm text-text-muted text-center py-12">
+                  Select a job to view details
+                </p>
+              )}
             </div>
           </div>
         ) : (
-          <JobList {...jobListProps} />
+          <>
+            <JobList {...jobListProps} />
+            {selectedJobId && (
+              <JobDetailModal
+                jobId={selectedJobId}
+                onClose={() => setSelectedJobId(null)}
+              />
+            )}
+          </>
         )}
       </div>
     </div>

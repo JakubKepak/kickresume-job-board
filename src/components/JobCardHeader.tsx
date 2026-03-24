@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 
 interface JobCardHeaderProps {
   title: string
   organization: string
   logoUrl: string | null
+  action?: ReactNode
   className?: string
 }
 
@@ -11,6 +12,7 @@ export function JobCardHeader({
   title,
   organization,
   logoUrl,
+  action,
   className = '',
 }: JobCardHeaderProps) {
   const [logoError, setLogoError] = useState(false)
@@ -34,12 +36,14 @@ export function JobCardHeader({
         )}
       </div>
 
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <h3 className="text-sm font-semibold text-text-primary truncate">
           {title}
         </h3>
         <p className="text-sm text-text-secondary truncate">{organization}</p>
       </div>
+
+      {action && <div className="shrink-0">{action}</div>}
     </div>
   )
 }
