@@ -32,7 +32,7 @@
 
   /* Layout */
   --width-job-list: 420px;
-  --width-container: 1200px;
+  --max-width-container: 1000px;
 }
 
 *,
