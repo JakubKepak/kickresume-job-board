@@ -12,6 +12,7 @@
 - Create reusable components — extract shared patterns, avoid duplication
 - Use Zod schemas at API boundaries to validate all backend responses
 - 3-layer error handling: Zod validation → TanStack Query error states → ErrorBoundary
+- ALWAYS use `/tanstack-query` skill when implementing, editing, or reviewing any API calls, data fetching, or React Query hooks
 
 ## Commands
 - `nvm use 22` — always use Node 22
