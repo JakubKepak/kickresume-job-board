@@ -77,7 +77,7 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
       </div>
 
       <div className="shrink-0 border-t border-card-border px-6 py-4 flex gap-3">
-        <Button variant="secondary" onClick={onClose} className="flex-1">
+        <Button variant="outline" onClick={onClose} className="flex-1">
           Back
         </Button>
         <Button
