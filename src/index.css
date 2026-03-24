@@ -38,6 +38,7 @@
   --width-job-list: 420px;
   --max-width-container: 1000px;
   --spacing-sticky-top: 124px;
+  --spacing-detail-offset: 100px;
 }
 
 *,

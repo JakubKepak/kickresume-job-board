@@ -28,7 +28,7 @@ function JobDetailContent({ jobId }: JobDetailProps) {
   }
 
   return (
-    <div className="rounded-3xl border-2 border-card-border bg-card-bg drop-shadow-[var(--drop-shadow-card)] flex flex-col max-h-[calc(100vh-var(--spacing-sticky-top))]">
+    <div className="rounded-3xl border-2 border-card-border bg-card-bg drop-shadow-[var(--drop-shadow-card)] flex flex-col max-h-full">
       <JobCardHeader
         title={job.title}
         organization={job.organization}

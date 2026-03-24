@@ -76,7 +76,7 @@ function App() {
             <div className="w-job-list shrink-0">
               <JobList {...jobListProps} />
             </div>
-            <div className="flex-1 min-w-0 sticky top-sticky-top">
+            <div className="flex-1 min-w-0 sticky top-sticky-top pb-4 h-[calc(100dvh-var(--spacing-sticky-top)-var(--spacing-detail-offset))]">
               {selectedJobId ? (
                 <JobDetail jobId={selectedJobId} />
               ) : (
