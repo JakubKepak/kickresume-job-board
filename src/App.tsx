@@ -57,13 +57,13 @@ function App() {
   return (
     <div className="min-h-screen bg-page-bg">
       <div className="mx-auto max-w-container px-4 md:px-6">
-        <header className="pt-6 pb-4 md:pt-8 md:pb-6">
+        <header className="pt-6 md:pt-8">
           <h1 className="font-display text-2xl md:text-4xl font-normal text-text-primary">
             {pageTitle}
           </h1>
         </header>
 
-        <div className="sticky top-0 z-20 pt-4 pb-4 md:pt-6 md:pb-6">
+        <div className="sticky top-0 z-20 pt-6 pb-4 md:pb-6">
           <SearchBar
             initialQuery={searchQuery}
             initialCountry={selectedCountry}
