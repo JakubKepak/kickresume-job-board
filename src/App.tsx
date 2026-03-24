@@ -61,30 +61,30 @@ function App() {
           </h1>
         </header>
 
-        <SearchBar
-          initialQuery={searchQuery}
-          initialCountry={selectedCountry}
-          onSearch={handleSearch}
-        />
-
-        <div className="mt-4 md:mt-6">
-          {isDesktop ? (
-            <div className="flex gap-6">
-              <div className="w-job-list shrink-0 overflow-y-auto h-[calc(100vh-220px)]">
-                <JobList {...jobListProps} />
-              </div>
-              <div className="flex-1 overflow-y-auto h-[calc(100vh-220px)]">
-                <p className="text-text-secondary">
-                  {selectedJobId
-                    ? `Detail for ${selectedJobId}`
-                    : 'Select a job to view details'}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <JobList {...jobListProps} />
-          )}
+        <div className="sticky top-0 z-20 pt-4 pb-4 md:pt-6 md:pb-6">
+          <SearchBar
+            initialQuery={searchQuery}
+            initialCountry={selectedCountry}
+            onSearch={handleSearch}
+          />
         </div>
+
+        {isDesktop ? (
+          <div className="flex gap-6 items-start">
+            <div className="w-job-list shrink-0">
+              <JobList {...jobListProps} />
+            </div>
+            <div className="flex-1 sticky top-sticky-top max-h-[calc(100vh-var(--spacing-sticky-top))] overflow-y-auto">
+              <p className="text-text-secondary">
+                {selectedJobId
+                  ? `Detail for ${selectedJobId}`
+                  : 'Select a job to view details'}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <JobList {...jobListProps} />
+        )}
       </div>
     </div>
   )

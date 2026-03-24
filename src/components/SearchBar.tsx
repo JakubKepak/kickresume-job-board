@@ -26,7 +26,7 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-card-bg rounded-2xl border border-card-border shadow-search px-5.75 py-4.5"
+      className="bg-card-bg rounded-2xl border border-search-border shadow-search px-5.75 py-4.5"
     >
       {/* Desktop: horizontal row */}
       <div className="hidden md:flex items-center gap-2.5">
