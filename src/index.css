@@ -47,6 +47,14 @@
   box-sizing: border-box;
 }
 
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
