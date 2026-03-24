@@ -41,15 +41,15 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-white flex flex-col">
-      <div className="flex-1 overflow-y-auto">
+    <div className="fixed inset-0 z-50">
+      <div className="h-full overflow-y-auto bg-white">
         <JobCardHeader
           title={job.title}
           organization={job.organization}
           logoUrl={job.organization_logo}
         />
 
-        <div className="px-6 py-5 flex flex-col gap-4">
+        <div className="px-6 py-5 flex flex-col gap-4 pb-24">
           {formatted.salary && (
             <p className="text-sm font-medium text-text-primary">{formatted.salary}</p>
           )}
@@ -76,13 +76,17 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-card-border px-6 py-4 flex gap-3">
-        <Button variant="outline" onClick={onClose} className="flex-1">
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 flex gap-2.5 backdrop-blur-lg"
+        style={{ background: 'linear-gradient(to bottom, rgba(244, 247, 248, 0.7), rgba(255, 255, 255, 0.85))' }}
+      >
+        <Button variant="outline" onClick={onClose} className="w-1/3">
           Back
         </Button>
         <Button
+          variant="secondary"
           onClick={() => window.open(job.url, '_blank', 'noopener,noreferrer')}
-          className="flex-1"
+          className="w-2/3"
         >
           Apply Now
         </Button>
