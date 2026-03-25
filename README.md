@@ -1,6 +1,5 @@
 # Kickresume Job Board
 
-A job search application built as a frontend developer assignment for Kickresume.
 
 ## Tech Stack
 
@@ -14,7 +13,6 @@ A job search application built as a frontend developer assignment for Kickresume
 ## Setup
 
 ```bash
-nvm use 22
 npm install
 npm run dev
 ```
@@ -28,8 +26,4 @@ npm run dev
 
 ## Time Spent
 
-_TODO_
-
-## What I Would Improve
-
-_TODO_
+about 4 hours
