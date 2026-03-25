@@ -9,8 +9,8 @@ test.describe('Job Detail - Mobile', () => {
 
     await page.locator('article[role="button"]').first().click()
 
-    await expect(page.getByText('Apply Now')).toBeVisible()
-    await expect(page.getByText('Back')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Apply Now' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Back' })).toBeVisible()
   })
 
   test('back button closes modal', async ({ page }) => {
@@ -18,11 +18,11 @@ test.describe('Job Detail - Mobile', () => {
     await expect(page.locator('article[role="button"]').first()).toBeVisible()
 
     await page.locator('article[role="button"]').first().click()
-    await expect(page.getByText('Apply Now')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Apply Now' })).toBeVisible()
 
-    await page.getByText('Back').click()
+    await page.getByRole('button', { name: 'Back' }).click()
 
-    await expect(page.getByText('Apply Now')).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'Apply Now' })).not.toBeVisible()
     await expect(page.locator('article[role="button"]').first()).toBeVisible()
   })
 })

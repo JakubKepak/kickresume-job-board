@@ -11,7 +11,7 @@ test.describe('Job Detail - Desktop', () => {
     const jobTitle = await firstCard.locator('h3').first().textContent()
     await firstCard.click()
 
-    await expect(page.getByText('Apply')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Apply' })).toBeVisible()
     await expect(page.getByText(jobTitle!).last()).toBeVisible()
   })
 
