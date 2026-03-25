@@ -45,7 +45,7 @@ describe('JobList', () => {
         error={new Error('Network error')}
       />,
     )
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument()
+    expect(screen.getByText("Well, that wasn't supposed to happen")).toBeInTheDocument()
     expect(screen.getByText('Try again')).toBeInTheDocument()
   })
 

@@ -2,52 +2,65 @@ import type { FallbackProps } from 'react-error-boundary'
 import { ApiError } from '../api/client'
 import { Button } from './Button'
 
-function getErrorMessage(error: unknown): { title: string; description: string } {
+function getErrorMessage(error: unknown): { emoji: string; title: string; description: string; buttonText: string } {
   if (error instanceof ApiError) {
     if (error.status === 404) {
       return {
-        title: 'Not found',
-        description: 'The job you are looking for may have been removed or is no longer available.',
+        emoji: '🕵️',
+        title: 'Job vanished into thin air',
+        description: 'This job listing pulled a disappearing act. It may have been filled or removed.',
+        buttonText: 'Back to search',
       }
     }
     if (error.status >= 500) {
       return {
-        title: 'Server error',
-        description: 'The server is having issues right now. Please try again in a moment.',
+        emoji: '🔧',
+        title: 'Our servers are taking a coffee break',
+        description: 'They should be back shortly. In the meantime, maybe perfect your resume?',
+        buttonText: 'Try again',
       }
     }
     return {
-      title: 'Request failed',
-      description: 'We could not load the data. Please check your connection and try again.',
+      emoji: '📡',
+      title: 'Houston, we have a problem',
+      description: 'Something went wrong fetching the data. Check your connection and give it another shot.',
+      buttonText: 'Retry',
     }
   }
 
   if (error instanceof TypeError && error.message === 'Failed to fetch') {
     return {
-      title: 'Connection error',
-      description: 'Unable to reach the server. Please check your internet connection.',
+      emoji: '🌐',
+      title: 'Lost in the internet wilderness',
+      description: 'We can\'t reach the server. Make sure you\'re connected to the internet and try again.',
+      buttonText: 'Reconnect',
     }
   }
 
   return {
-    title: 'Something went wrong',
-    description: error instanceof Error ? error.message : 'An unexpected error occurred.',
+    emoji: '🤔',
+    title: 'Well, that wasn\'t supposed to happen',
+    description: 'Something unexpected went wrong. Our bad — give it another try.',
+    buttonText: 'Try again',
   }
 }
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
-  const { title, description } = getErrorMessage(error)
+  const { emoji, title, description, buttonText } = getErrorMessage(error)
 
   return (
     <div className="flex flex-col items-center justify-center min-h-50 p-8 text-center">
-      <h2 className="text-lg font-semibold text-text-primary mb-2">
+      <span className="text-4xl mb-3" role="img" aria-hidden="true">
+        {emoji}
+      </span>
+      <h2 className="text-lg font-semibold text-text-primary mb-1">
         {title}
       </h2>
-      <p className="text-sm text-text-secondary mb-4 max-w-md">
+      <p className="text-sm text-text-secondary mb-5 max-w-sm leading-relaxed">
         {description}
       </p>
       <Button variant="primary" onClick={resetErrorBoundary}>
-        Try again
+        {buttonText}
       </Button>
     </div>
   )

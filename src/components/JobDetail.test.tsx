@@ -55,7 +55,7 @@ describe('JobDetail', () => {
     renderWithProviders(<JobDetail jobId="1" />)
 
     await waitFor(() => {
-      expect(screen.getByText('Server error')).toBeInTheDocument()
+      expect(screen.getByText('Our servers are taking a coffee break')).toBeInTheDocument()
       expect(screen.getByText('Try again')).toBeInTheDocument()
     })
   })
