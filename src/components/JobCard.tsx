@@ -3,7 +3,7 @@ import { formatRelativeDate, formatWorkArrangement } from '../utils/format'
 import { JobCardHeader } from './JobCardHeader'
 import { Pill } from './Pill'
 import { LocationIcon } from './icons/LocationIcon'
-import { BuildingIcon } from './icons/BuildingIcon'
+import { BriefcaseIcon } from './icons/BriefcaseIcon'
 
 interface JobCardProps {
   job: JobPostSummary
@@ -45,7 +45,7 @@ export function JobCard({ job, isSelected, onSelect }: JobCardProps) {
             <Pill icon={<LocationIcon />}>{location}</Pill>
           )}
           {workArrangement && (
-            <Pill icon={<BuildingIcon />}>{workArrangement}</Pill>
+            <Pill icon={<BriefcaseIcon />}>{workArrangement}</Pill>
           )}
         </div>
 

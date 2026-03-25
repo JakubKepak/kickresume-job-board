@@ -5,7 +5,7 @@ import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
 import { Button } from './Button'
 import { LocationIcon } from './icons/LocationIcon'
-import { BuildingIcon } from './icons/BuildingIcon'
+import { BriefcaseIcon } from './icons/BriefcaseIcon'
 import ErrorFallback from './ErrorFallback'
 import LoadingSpinner from './LoadingSpinner'
 
@@ -63,7 +63,7 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
             )}
             {formatted.workArrangement && (
               <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-                <BuildingIcon size={14} />
+                <BriefcaseIcon size={14} />
                 {formatted.workArrangement}
               </div>
             )}

@@ -4,7 +4,7 @@ import { JobCardHeader } from './JobCardHeader'
 import { Pill } from './Pill'
 import { Button } from './Button'
 import { LocationIcon } from './icons/LocationIcon'
-import { BuildingIcon } from './icons/BuildingIcon'
+import { BriefcaseIcon } from './icons/BriefcaseIcon'
 import ErrorFallback from './ErrorFallback'
 import LoadingSpinner from './LoadingSpinner'
 
@@ -54,7 +54,7 @@ function JobDetailContent({ jobId }: JobDetailProps) {
               <Pill icon={<LocationIcon />}>{formatted.location}</Pill>
             )}
             {formatted.workArrangement && (
-              <Pill icon={<BuildingIcon />}>{formatted.workArrangement}</Pill>
+              <Pill icon={<BriefcaseIcon />}>{formatted.workArrangement}</Pill>
             )}
           </div>
         </div>
