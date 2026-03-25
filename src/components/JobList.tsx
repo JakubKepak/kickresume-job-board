@@ -4,8 +4,8 @@ import { ErrorBoundary } from 'react-error-boundary'
 import type { JobPostSummary } from '../schemas/api'
 import { JobCard } from './JobCard'
 import { JobListSkeleton } from './JobCardSkeleton'
-import ErrorFallback from './ErrorFallback'
-import LoadingSpinner from './LoadingSpinner'
+import { ErrorFallback } from './ErrorFallback'
+import { LoadingSpinner } from './LoadingSpinner'
 
 interface JobListProps {
   jobs: JobPostSummary[]

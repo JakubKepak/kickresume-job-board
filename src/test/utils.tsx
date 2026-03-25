@@ -3,7 +3,7 @@ import { render, type RenderOptions } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
-import ErrorFallback from '../components/ErrorFallback'
+import { ErrorFallback } from '../components/ErrorFallback'
 import { DEFAULT_LOCALE, messages } from '../i18n/messages'
 
 function createTestQueryClient() {

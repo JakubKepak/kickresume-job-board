@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import App from './App'
-import ErrorFallback from './components/ErrorFallback'
+import { ErrorFallback } from './components/ErrorFallback'
 import { DEFAULT_LOCALE, messages } from './i18n/messages'
 import './index.css'
 

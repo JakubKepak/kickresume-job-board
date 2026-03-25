@@ -5,7 +5,7 @@ import { JobCardHeader } from './JobCardHeader'
 import { JobDetailBody } from './JobDetailBody'
 import { Button } from './Button'
 import { JobDetailSkeleton } from './JobDetailSkeleton'
-import ErrorFallback from './ErrorFallback'
+import { ErrorFallback } from './ErrorFallback'
 
 interface JobDetailProps {
   jobId: string

@@ -6,8 +6,8 @@ import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
 import { JobDetailBody } from './JobDetailBody'
 import { Button } from './Button'
-import ErrorFallback from './ErrorFallback'
-import LoadingSpinner from './LoadingSpinner'
+import { ErrorFallback } from './ErrorFallback'
+import { LoadingSpinner } from './LoadingSpinner'
 
 interface JobDetailModalProps {
   jobId: string
@@ -55,6 +55,7 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
           location={formatted.location}
           workArrangement={formatted.workArrangement}
           descriptionHtml={job.description_html}
+          postedDate={formatted.postedDate}
           className="px-6 py-5 pb-24"
         />
       </div>

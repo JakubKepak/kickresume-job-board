@@ -32,7 +32,7 @@ export async function fetchJobPosts({
   }
 
   if (q) params.q = q
-  if (country) params.country = country
+  if (country) params.country = [country]
 
   const data = await apiGet<unknown>('/job-posts/', params)
   return paginatedJobPostsSchema.parse(data)

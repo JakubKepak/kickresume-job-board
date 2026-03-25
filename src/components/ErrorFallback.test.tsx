@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { renderWithProviders, screen, userEvent } from '../test/utils'
-import ErrorFallback from './ErrorFallback'
+import { ErrorFallback } from './ErrorFallback'
 import { ApiError } from '../api/client'
 
 describe('ErrorFallback', () => {

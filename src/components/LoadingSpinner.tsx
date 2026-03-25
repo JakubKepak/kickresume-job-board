@@ -11,7 +11,7 @@ const sizeClasses = {
   lg: 'h-12 w-12',
 } as const
 
-function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
   const intl = useIntl()
 
   return (
@@ -41,4 +41,3 @@ function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
   )
 }
 
-export default LoadingSpinner

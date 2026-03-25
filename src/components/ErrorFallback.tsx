@@ -28,7 +28,7 @@ function getErrorInfo(error: unknown): ErrorInfo {
   return { emoji: '🤔', titleId: 'error.unknown.title', descriptionId: 'error.unknown.description', buttonId: 'error.unknown.button' }
 }
 
-function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const intl = useIntl()
   const { emoji, titleId, descriptionId, buttonId } = getErrorInfo(error)
 
@@ -50,4 +50,3 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   )
 }
 
-export default ErrorFallback
