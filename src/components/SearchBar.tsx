@@ -41,7 +41,7 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
         <CountrySelect
           value={country}
           onChange={setCountry}
-          className="min-w-40"
+          className="shrink-0"
         />
 
         <Button type="submit">Search</Button>
