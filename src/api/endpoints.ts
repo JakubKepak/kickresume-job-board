@@ -15,14 +15,14 @@ export async function fetchCountries(): Promise<CountriesResponse> {
 
 interface FetchJobPostsParams {
   q?: string
-  country?: string
+  countries?: string[]
   limit?: number
   offset?: number
 }
 
 export async function fetchJobPosts({
   q,
-  country,
+  countries,
   limit = 20,
   offset = 0,
 }: FetchJobPostsParams = {}): Promise<PaginatedJobPosts> {
@@ -32,7 +32,7 @@ export async function fetchJobPosts({
   }
 
   if (q) params.q = q
-  if (country) params.country = [country]
+  if (countries && countries.length > 0) params.country = countries
 
   const data = await apiGet<unknown>('/job-posts/', params)
   return paginatedJobPostsSchema.parse(data)

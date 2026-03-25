@@ -7,18 +7,18 @@ import { SearchIcon } from './icons/SearchIcon'
 
 interface SearchBarProps {
   initialQuery: string
-  initialCountry: string
-  onSearch: (query: string, country: string) => void
+  initialCountries: string[]
+  onSearch: (query: string, countries: string[]) => void
 }
 
-export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarProps) {
+export function SearchBar({ initialQuery, initialCountries, onSearch }: SearchBarProps) {
   const intl = useIntl()
   const [inputValue, setInputValue] = useState(initialQuery)
-  const [country, setCountry] = useState(initialCountry)
+  const [countries, setCountries] = useState(initialCountries)
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSearch(inputValue.trim(), country)
+    onSearch(inputValue.trim(), countries)
   }
 
   const handleClear = () => {
@@ -41,8 +41,8 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
         />
 
         <CountrySelect
-          value={country}
-          onChange={setCountry}
+          value={countries}
+          onChange={setCountries}
           className="shrink-0"
         />
 
@@ -59,7 +59,7 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
           placeholder={intl.formatMessage({ id: 'search.placeholder' })}
         />
 
-        <CountrySelect value={country} onChange={setCountry} className="w-full" />
+        <CountrySelect value={countries} onChange={setCountries} closeOnSelect className="w-full" />
 
         <Button type="submit" className="w-full">{intl.formatMessage({ id: 'search.submit' })}</Button>
       </div>

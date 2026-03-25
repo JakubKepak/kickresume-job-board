@@ -9,6 +9,9 @@ const en: Record<string, string> = {
   'search.submit': 'Search',
   'search.clear': 'Clear search',
 
+  // MultiSelect
+  'multiSelect.noResults': 'No results',
+
   // CountrySelect
   'country.all': 'All countries',
   'country.filterLabel': 'Filter by country',

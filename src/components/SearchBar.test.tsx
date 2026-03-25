@@ -13,20 +13,20 @@ function getDesktopContainer() {
 describe('SearchBar', () => {
   it('renders input, country select, and search button', async () => {
     renderWithProviders(
-      <SearchBar initialQuery="" initialCountry="" onSearch={() => {}} />,
+      <SearchBar initialQuery="" initialCountries={[]} onSearch={() => {}} />,
     )
     const desktop = getDesktopContainer()
     expect(desktop.getByPlaceholderText('Job title, keyword, or company')).toBeInTheDocument()
     expect(desktop.getByRole('button', { name: /search/i })).toBeInTheDocument()
 
     await waitFor(() => {
-      expect(desktop.getByRole('combobox')).toBeInTheDocument()
+      expect(desktop.getByLabelText('Filter by country')).toBeInTheDocument()
     })
   })
 
   it('populates country dropdown from API', async () => {
     renderWithProviders(
-      <SearchBar initialQuery="" initialCountry="" onSearch={() => {}} />,
+      <SearchBar initialQuery="" initialCountries={[]} onSearch={() => {}} />,
     )
     const desktop = getDesktopContainer()
     await waitFor(() => {
@@ -39,7 +39,7 @@ describe('SearchBar', () => {
   it('calls onSearch with query and country on submit', async () => {
     const onSearch = vi.fn()
     renderWithProviders(
-      <SearchBar initialQuery="" initialCountry="" onSearch={onSearch} />,
+      <SearchBar initialQuery="" initialCountries={[]} onSearch={onSearch} />,
     )
     const desktop = getDesktopContainer()
 
@@ -49,13 +49,13 @@ describe('SearchBar', () => {
     )
     await userEvent.click(desktop.getByRole('button', { name: /search/i }))
 
-    expect(onSearch).toHaveBeenCalledWith('React Developer', '')
+    expect(onSearch).toHaveBeenCalledWith('React Developer', [])
   })
 
   it('trims whitespace from query', async () => {
     const onSearch = vi.fn()
     renderWithProviders(
-      <SearchBar initialQuery="" initialCountry="" onSearch={onSearch} />,
+      <SearchBar initialQuery="" initialCountries={[]} onSearch={onSearch} />,
     )
     const desktop = getDesktopContainer()
 
@@ -65,12 +65,12 @@ describe('SearchBar', () => {
     )
     await userEvent.click(desktop.getByRole('button', { name: /search/i }))
 
-    expect(onSearch).toHaveBeenCalledWith('React', '')
+    expect(onSearch).toHaveBeenCalledWith('React', [])
   })
 
   it('renders with initial values', () => {
     renderWithProviders(
-      <SearchBar initialQuery="Developer" initialCountry="Canada" onSearch={() => {}} />,
+      <SearchBar initialQuery="Developer" initialCountries={['Canada']} onSearch={() => {}} />,
     )
     const desktop = getDesktopContainer()
     expect(desktop.getByPlaceholderText('Job title, keyword, or company')).toHaveValue('Developer')
@@ -78,14 +78,14 @@ describe('SearchBar', () => {
 
   it('mobile layout shows clear button when input has value', () => {
     renderWithProviders(
-      <SearchBar initialQuery="test" initialCountry="" onSearch={() => {}} />,
+      <SearchBar initialQuery="test" initialCountries={[]} onSearch={() => {}} />,
     )
     expect(screen.getByLabelText('Clear search')).toBeInTheDocument()
   })
 
   it('mobile clear button empties input', async () => {
     renderWithProviders(
-      <SearchBar initialQuery="test" initialCountry="" onSearch={() => {}} />,
+      <SearchBar initialQuery="test" initialCountries={[]} onSearch={() => {}} />,
     )
     await userEvent.click(screen.getByLabelText('Clear search'))
 

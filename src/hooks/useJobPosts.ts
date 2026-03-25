@@ -5,8 +5,8 @@ const LIMIT = 20
 
 const jobPostKeys = {
   all: ['job-posts'] as const,
-  list: (q: string, country: string) =>
-    [...jobPostKeys.all, 'list', { q, country }] as const,
+  list: (q: string, countries: string[]) =>
+    [...jobPostKeys.all, 'list', { q, countries }] as const,
 }
 
 function parseOffsetFromUrl(url: string | null): number | null {
@@ -20,11 +20,11 @@ function parseOffsetFromUrl(url: string | null): number | null {
   }
 }
 
-export function useJobPosts(q: string, country: string) {
+export function useJobPosts(q: string, countries: string[]) {
   return useInfiniteQuery({
-    queryKey: jobPostKeys.list(q, country),
+    queryKey: jobPostKeys.list(q, countries),
     queryFn: ({ pageParam }) =>
-      fetchJobPosts({ q: q || undefined, country: country || undefined, limit: LIMIT, offset: pageParam }),
+      fetchJobPosts({ q: q || undefined, countries: countries.length > 0 ? countries : undefined, limit: LIMIT, offset: pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => parseOffsetFromUrl(lastPage.next),
   })

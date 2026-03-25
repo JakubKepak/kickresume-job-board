@@ -10,7 +10,7 @@ import { useJobPosts } from './hooks/useJobPosts'
 function App() {
   const intl = useIntl()
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([])
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null)
   const isDesktop = useIsDesktop()
 
@@ -23,14 +23,14 @@ function App() {
     isFetchingNextPage,
     fetchNextPage,
     refetch,
-  } = useJobPosts(searchQuery, selectedCountry)
+  } = useJobPosts(searchQuery, selectedCountries)
 
   const allJobs = data?.pages.flatMap((page) => page.results) ?? []
   const totalCount = data?.pages[0]?.count ?? 0
 
-  const handleSearch = useCallback((query: string, country: string) => {
+  const handleSearch = useCallback((query: string, countries: string[]) => {
     setSearchQuery(query)
-    setSelectedCountry(country)
+    setSelectedCountries(countries)
     setSelectedJobId(null)
   }, [])
 
@@ -68,7 +68,7 @@ function App() {
         <div className="sticky top-0 z-20 pt-6 pb-4 md:pb-6">
           <SearchBar
             initialQuery={searchQuery}
-            initialCountry={selectedCountry}
+            initialCountries={selectedCountries}
             onSearch={handleSearch}
           />
         </div>
