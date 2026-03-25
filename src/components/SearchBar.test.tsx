@@ -29,6 +29,13 @@ describe('SearchBar', () => {
       <SearchBar initialQuery="" initialCountries={[]} onSearch={() => {}} />,
     )
     const desktop = getDesktopContainer()
+
+    // Wait for countries to load, then open the dropdown
+    await waitFor(() => {
+      expect(desktop.getByLabelText('Filter by country')).toBeInTheDocument()
+    })
+    await userEvent.click(desktop.getByLabelText('Filter by country'))
+
     await waitFor(() => {
       expect(desktop.getByText('United States')).toBeInTheDocument()
       expect(desktop.getByText('Canada')).toBeInTheDocument()

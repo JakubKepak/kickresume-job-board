@@ -20,10 +20,17 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
     return () => {
       document.body.style.overflow = ''
+      document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [onClose])
 
   if (isPending) {
     return (

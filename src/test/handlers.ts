@@ -19,7 +19,7 @@ export const handlers = [
   http.get(`${BASE_URL}/job-posts/`, ({ request }) => {
     const url = new URL(request.url)
     const q = url.searchParams.get('q')
-    const country = url.searchParams.get('country')
+    const countries = url.searchParams.getAll('country')
 
     let results = defaultJobs
 
@@ -31,9 +31,11 @@ export const handlers = [
       )
     }
 
-    if (country) {
+    if (countries.length > 0) {
       results = results.filter((job) =>
-        job.locations_derived?.some((loc) => loc.includes(country)),
+        job.locations_derived?.some((loc) =>
+          countries.some((c) => loc.includes(c)),
+        ),
       )
     }
 

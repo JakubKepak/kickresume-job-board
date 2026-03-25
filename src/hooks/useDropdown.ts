@@ -60,7 +60,7 @@ export function useDropdown(closeOnSelect = false) {
   useEffect(() => {
     if (!isOpen || !listRef.current) return
     const item = listRef.current.children[highlightedIndex] as HTMLElement | undefined
-    item?.scrollIntoView({ block: 'nearest' })
+    item?.scrollIntoView?.({ block: 'nearest' })
   }, [highlightedIndex, isOpen])
 
   // Returns 'select' when the consumer should toggle the highlighted option, null otherwise

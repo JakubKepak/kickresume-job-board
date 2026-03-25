@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useIntl } from 'react-intl'
 import { SearchBar } from './components/SearchBar'
 import { JobList } from './components/JobList'
@@ -7,7 +7,7 @@ import { JobDetailModal } from './components/JobDetailModal'
 import { useIsDesktop } from './hooks/useMediaQuery'
 import { useJobPosts } from './hooks/useJobPosts'
 
-function App() {
+export function App() {
   const intl = useIntl()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
@@ -25,7 +25,7 @@ function App() {
     refetch,
   } = useJobPosts(searchQuery, selectedCountries)
 
-  const allJobs = data?.pages.flatMap((page) => page.results) ?? []
+  const allJobs = useMemo(() => data?.pages.flatMap((page) => page.results) ?? [], [data])
   const totalCount = data?.pages[0]?.count ?? 0
 
   const handleSearch = useCallback((query: string, countries: string[]) => {
@@ -104,4 +104,3 @@ function App() {
   )
 }
 
-export default App
