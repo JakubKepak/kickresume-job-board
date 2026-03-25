@@ -3,9 +3,8 @@ import { createPortal } from 'react-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
+import { JobDetailBody } from './JobDetailBody'
 import { Button } from './Button'
-import { LocationIcon } from './icons/LocationIcon'
-import { BriefcaseIcon } from './icons/BriefcaseIcon'
 import ErrorFallback from './ErrorFallback'
 import LoadingSpinner from './LoadingSpinner'
 
@@ -49,35 +48,17 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
           logoUrl={job.organization_logo}
         />
 
-        <div className="px-6 py-5 flex flex-col gap-4 pb-24">
-          {formatted.salary && (
-            <p className="text-sm font-medium text-text-primary">{formatted.salary}</p>
-          )}
-
-          <div className="flex flex-col gap-1.5">
-            {formatted.location && (
-              <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-                <LocationIcon size={14} />
-                {formatted.location}
-              </div>
-            )}
-            {formatted.workArrangement && (
-              <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-                <BriefcaseIcon size={14} />
-                {formatted.workArrangement}
-              </div>
-            )}
-          </div>
-
-          <div
-            className="text-sm text-text-secondary leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: job.description_html }}
-          />
-        </div>
+        <JobDetailBody
+          salary={formatted.salary}
+          location={formatted.location}
+          workArrangement={formatted.workArrangement}
+          descriptionHtml={job.description_html}
+          className="px-6 py-5 pb-24"
+        />
       </div>
 
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 flex gap-2.5 backdrop-blur-lg"
+        className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex gap-2.5 backdrop-blur-lg"
         style={{ background: 'var(--gradient-bottom-bar)' }}
       >
         <Button variant="outline" onClick={onClose} className="w-1/3">

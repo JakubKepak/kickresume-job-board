@@ -1,10 +1,8 @@
 import { ErrorBoundary } from 'react-error-boundary'
 import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
-import { Pill } from './Pill'
+import { JobDetailBody } from './JobDetailBody'
 import { Button } from './Button'
-import { LocationIcon } from './icons/LocationIcon'
-import { BriefcaseIcon } from './icons/BriefcaseIcon'
 import ErrorFallback from './ErrorFallback'
 import LoadingSpinner from './LoadingSpinner'
 
@@ -44,30 +42,14 @@ function JobDetailContent({ jobId }: JobDetailProps) {
         }
       />
 
-      <div className="px-8 pb-6 pt-4 flex flex-col gap-4 rounded-b-3xl overflow-y-auto">
-        <div className="flex flex-col gap-2">
-          {formatted.salary && (
-            <p className="text-sm font-medium text-text-primary">{formatted.salary}</p>
-          )}
-          <div className="flex flex-wrap gap-2">
-            {formatted.location && (
-              <Pill icon={<LocationIcon />}>{formatted.location}</Pill>
-            )}
-            {formatted.workArrangement && (
-              <Pill icon={<BriefcaseIcon />}>{formatted.workArrangement}</Pill>
-            )}
-          </div>
-        </div>
-
-        <div
-          className="text-sm text-text-secondary leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: job.description_html }}
-        />
-
-        <p className="text-xs text-text-muted">
-          {formatted.postedDate}
-        </p>
-      </div>
+      <JobDetailBody
+        salary={formatted.salary}
+        location={formatted.location}
+        workArrangement={formatted.workArrangement}
+        descriptionHtml={job.description_html}
+        postedDate={formatted.postedDate}
+        className="px-8 pb-6 pt-4 rounded-b-3xl overflow-y-auto"
+      />
     </div>
   )
 }
