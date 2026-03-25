@@ -14,7 +14,7 @@ export function useFormattedJobDetail(jobId: string | null) {
           job.ai_salary_unittext,
         ),
         workArrangement: formatWorkArrangement(job.ai_work_arrangement),
-        location: job.locations_derived[0] ?? null,
+        location: job.locations_derived?.[0] ?? null,
         postedDate: formatRelativeDate(job.date_posted),
       }
     : null

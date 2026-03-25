@@ -18,7 +18,7 @@ export const jobPostSummarySchema = z.object({
   organization: z.string(),
   organization_logo: z.string().nullable(),
   date_posted: z.string(),
-  locations_derived: z.array(z.string()),
+  locations_derived: z.array(z.string()).nullable(),
   ai_work_arrangement: workArrangement,
   ai_salary_minvalue: z.string().nullable(),
   ai_salary_maxvalue: z.string().nullable(),

@@ -13,7 +13,7 @@ interface JobCardProps {
 
 export function JobCard({ job, isSelected, onSelect }: JobCardProps) {
   const workArrangement = formatWorkArrangement(job.ai_work_arrangement)
-  const location = job.locations_derived[0] ?? null
+  const location = job.locations_derived?.[0] ?? null
 
   return (
     <article
