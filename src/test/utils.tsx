@@ -1,8 +1,10 @@
 import { type ReactElement } from 'react'
 import { render, type RenderOptions } from '@testing-library/react'
+import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import ErrorFallback from '../components/ErrorFallback'
+import { DEFAULT_LOCALE, messages } from '../i18n/messages'
 
 function createTestQueryClient() {
   return new QueryClient({
@@ -23,11 +25,13 @@ export function renderWithProviders(
 
   function Wrapper({ children }: { children: React.ReactNode }) {
     return (
-      <QueryClientProvider client={queryClient}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          {children}
-        </ErrorBoundary>
-      </QueryClientProvider>
+      <IntlProvider locale={DEFAULT_LOCALE} messages={messages[DEFAULT_LOCALE]}>
+        <QueryClientProvider client={queryClient}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            {children}
+          </ErrorBoundary>
+        </QueryClientProvider>
+      </IntlProvider>
     )
   }
 

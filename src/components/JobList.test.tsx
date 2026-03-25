@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { renderWithProviders, screen } from '../test/utils'
 import { JobList } from './JobList'
 import { createJobSummary } from '../test/fixtures'
 
@@ -22,24 +22,24 @@ const defaultProps = {
 
 describe('JobList', () => {
   it('renders job cards', () => {
-    render(<JobList {...defaultProps} />)
+    renderWithProviders(<JobList {...defaultProps} />)
     expect(screen.getByText('Frontend Developer')).toBeInTheDocument()
     expect(screen.getByText('Backend Developer')).toBeInTheDocument()
   })
 
   it('renders formatted total count', () => {
-    render(<JobList {...defaultProps} />)
+    renderWithProviders(<JobList {...defaultProps} />)
     expect(screen.getByText('1,732 search results')).toBeInTheDocument()
   })
 
   it('shows skeleton when isPending', () => {
-    render(<JobList {...defaultProps} isPending={true} />)
+    renderWithProviders(<JobList {...defaultProps} isPending={true} />)
     const skeletons = document.querySelectorAll('.animate-pulse')
     expect(skeletons.length).toBeGreaterThan(0)
   })
 
   it('shows error fallback when isError', () => {
-    render(
+    renderWithProviders(
       <JobList
         {...defaultProps}
         isError={true}
@@ -51,17 +51,17 @@ describe('JobList', () => {
   })
 
   it('shows empty state when no jobs and not loading', () => {
-    render(<JobList {...defaultProps} jobs={[]} totalCount={0} />)
+    renderWithProviders(<JobList {...defaultProps} jobs={[]} totalCount={0} />)
     expect(screen.getByText('No jobs found. Try a different search.')).toBeInTheDocument()
   })
 
   it('shows "No more results" when hasNextPage is false', () => {
-    render(<JobList {...defaultProps} hasNextPage={false} />)
+    renderWithProviders(<JobList {...defaultProps} hasNextPage={false} />)
     expect(screen.getByText('No more results')).toBeInTheDocument()
   })
 
   it('shows loading spinner when fetching next page', () => {
-    render(<JobList {...defaultProps} isFetchingNextPage={true} />)
+    renderWithProviders(<JobList {...defaultProps} isFetchingNextPage={true} />)
     const spinners = screen.getAllByLabelText('Loading')
     expect(spinners.length).toBeGreaterThanOrEqual(1)
   })

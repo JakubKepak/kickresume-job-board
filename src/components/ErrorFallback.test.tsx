@@ -1,12 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { renderWithProviders, screen, userEvent } from '../test/utils'
 import ErrorFallback from './ErrorFallback'
 import { ApiError } from '../api/client'
 
 describe('ErrorFallback', () => {
   it('shows vanished message for 404 ApiError', () => {
-    render(
+    renderWithProviders(
       <ErrorFallback
         error={new ApiError('Not found', 404)}
         resetErrorBoundary={() => {}}
@@ -16,7 +15,7 @@ describe('ErrorFallback', () => {
   })
 
   it('shows coffee break message for 500+ ApiError', () => {
-    render(
+    renderWithProviders(
       <ErrorFallback
         error={new ApiError('Internal Server Error', 500)}
         resetErrorBoundary={() => {}}
@@ -26,7 +25,7 @@ describe('ErrorFallback', () => {
   })
 
   it('shows internet wilderness message for network TypeError', () => {
-    render(
+    renderWithProviders(
       <ErrorFallback
         error={new TypeError('Failed to fetch')}
         resetErrorBoundary={() => {}}
@@ -36,7 +35,7 @@ describe('ErrorFallback', () => {
   })
 
   it('shows generic message for unknown errors', () => {
-    render(
+    renderWithProviders(
       <ErrorFallback
         error={new Error('Something unexpected')}
         resetErrorBoundary={() => {}}
@@ -47,7 +46,7 @@ describe('ErrorFallback', () => {
 
   it('calls resetErrorBoundary on button click', async () => {
     const reset = vi.fn()
-    render(
+    renderWithProviders(
       <ErrorFallback
         error={new Error('fail')}
         resetErrorBoundary={reset}

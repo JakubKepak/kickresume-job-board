@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl'
 import type { JobPostSummary } from '../schemas/api'
 import { formatRelativeDate, formatWorkArrangement } from '../utils/format'
 import { JobCardHeader } from './JobCardHeader'
@@ -12,7 +13,8 @@ interface JobCardProps {
 }
 
 export function JobCard({ job, isSelected, onSelect }: JobCardProps) {
-  const workArrangement = formatWorkArrangement(job.ai_work_arrangement)
+  const intl = useIntl()
+  const workArrangement = formatWorkArrangement(intl, job.ai_work_arrangement)
   const location = job.locations_derived?.[0] ?? null
 
   return (
@@ -50,7 +52,7 @@ export function JobCard({ job, isSelected, onSelect }: JobCardProps) {
         </div>
 
         <p className="text-xs text-text-muted">
-          {formatRelativeDate(job.date_posted)}
+          {formatRelativeDate(intl, job.date_posted)}
         </p>
       </div>
     </article>
