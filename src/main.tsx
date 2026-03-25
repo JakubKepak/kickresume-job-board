@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 import App from './App'
 import ErrorFallback from './components/ErrorFallback'
+import { DEFAULT_LOCALE, messages } from './i18n/messages'
 import './index.css'
 
 const queryClient = new QueryClient({
@@ -17,10 +19,19 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <App />
-      </ErrorBoundary>
-    </QueryClientProvider>
+    <IntlProvider
+      locale={DEFAULT_LOCALE}
+      messages={messages[DEFAULT_LOCALE]}
+      defaultRichTextElements={{
+        b: (chunks) => <strong>{chunks}</strong>,
+        i: (chunks) => <em>{chunks}</em>,
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <App />
+        </ErrorBoundary>
+      </QueryClientProvider>
+    </IntlProvider>
   </StrictMode>,
 )
