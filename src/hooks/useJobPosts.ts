@@ -11,9 +11,13 @@ const jobPostKeys = {
 
 function parseOffsetFromUrl(url: string | null): number | null {
   if (!url) return null
-  const parsed = new URL(url)
-  const offset = parsed.searchParams.get('offset')
-  return offset ? Number(offset) : null
+  try {
+    const parsed = new URL(url)
+    const offset = Number(parsed.searchParams.get('offset'))
+    return Number.isFinite(offset) ? offset : null
+  } catch {
+    return null
+  }
 }
 
 export function useJobPosts(q: string, country: string) {

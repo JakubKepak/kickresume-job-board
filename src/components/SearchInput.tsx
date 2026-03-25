@@ -26,7 +26,7 @@ export function SearchInput({
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full py-1 text-sm bg-transparent border-none focus:outline-none text-text-primary placeholder:text-text-muted ${icon ? 'pl-8 pr-3' : 'pr-10 px-1'}`}
+        className={`w-full py-1 text-sm font-medium bg-transparent border-none focus:outline-none text-text-primary placeholder:text-text-muted placeholder:font-normal ${icon ? 'pl-8 pr-3' : 'pl-3 pr-10'}`}
         {...props}
       />
       {onClear && value && (

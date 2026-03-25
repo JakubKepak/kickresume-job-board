@@ -78,7 +78,7 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
 
       <div
         className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 flex gap-2.5 backdrop-blur-lg"
-        style={{ background: 'linear-gradient(to bottom, rgba(244, 247, 248, 0.7), rgba(255, 255, 255, 0.85))' }}
+        style={{ background: 'var(--gradient-bottom-bar)' }}
       >
         <Button variant="outline" onClick={onClose} className="w-1/3">
           Back
