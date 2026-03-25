@@ -14,9 +14,10 @@ describe('JobDetail', () => {
     })
   })
 
-  it('shows loading spinner while fetching', () => {
+  it('shows skeleton while fetching', () => {
     renderWithProviders(<JobDetail jobId="1" />)
-    expect(screen.getByLabelText('Loading')).toBeInTheDocument()
+    const skeletons = document.querySelectorAll('.animate-pulse')
+    expect(skeletons.length).toBeGreaterThan(0)
   })
 
   it('renders description HTML', async () => {

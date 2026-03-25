@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import type { JobPostSummary } from '../schemas/api'
 import { JobCard } from './JobCard'
+import { JobListSkeleton } from './JobCardSkeleton'
 import ErrorFallback from './ErrorFallback'
 import LoadingSpinner from './LoadingSpinner'
 
@@ -52,7 +53,7 @@ export function JobList({
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
   if (isPending) {
-    return <LoadingSpinner size="lg" className="py-12" />
+    return <JobListSkeleton />
   }
 
   if (isError) {

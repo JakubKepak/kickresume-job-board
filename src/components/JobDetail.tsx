@@ -3,8 +3,8 @@ import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
 import { JobDetailBody } from './JobDetailBody'
 import { Button } from './Button'
+import { JobDetailSkeleton } from './JobDetailSkeleton'
 import ErrorFallback from './ErrorFallback'
-import LoadingSpinner from './LoadingSpinner'
 
 interface JobDetailProps {
   jobId: string
@@ -14,7 +14,7 @@ function JobDetailContent({ jobId }: JobDetailProps) {
   const { data: job, formatted, isPending, isError, error, refetch } = useFormattedJobDetail(jobId)
 
   if (isPending) {
-    return <LoadingSpinner size="lg" className="py-12" />
+    return <JobDetailSkeleton />
   }
 
   if (isError || !job || !formatted) {

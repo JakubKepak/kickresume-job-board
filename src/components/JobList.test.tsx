@@ -32,9 +32,10 @@ describe('JobList', () => {
     expect(screen.getByText('1,732 search results')).toBeInTheDocument()
   })
 
-  it('shows loading spinner when isPending', () => {
+  it('shows skeleton when isPending', () => {
     render(<JobList {...defaultProps} isPending={true} />)
-    expect(screen.getByLabelText('Loading')).toBeInTheDocument()
+    const skeletons = document.querySelectorAll('.animate-pulse')
+    expect(skeletons.length).toBeGreaterThan(0)
   })
 
   it('shows error fallback when isError', () => {
