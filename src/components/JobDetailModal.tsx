@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { useIntl } from 'react-intl'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
@@ -14,6 +15,7 @@ interface JobDetailModalProps {
 }
 
 function ModalContent({ jobId, onClose }: JobDetailModalProps) {
+  const intl = useIntl()
   const { data: job, formatted, isPending, isError, error, refetch } = useFormattedJobDetail(jobId)
 
   useEffect(() => {
@@ -62,14 +64,14 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
         style={{ background: 'var(--gradient-bottom-bar)' }}
       >
         <Button variant="outline" onClick={onClose} className="w-1/3">
-          Back
+          {intl.formatMessage({ id: 'jobDetail.back' })}
         </Button>
         <Button
           variant="secondary"
           onClick={() => window.open(job.url, '_blank', 'noopener,noreferrer')}
           className="w-2/3"
         >
-          Apply Now
+          {intl.formatMessage({ id: 'jobDetail.applyNow' })}
         </Button>
       </div>
     </div>

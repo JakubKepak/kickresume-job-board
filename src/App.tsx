@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { SearchBar } from './components/SearchBar'
 import { JobList } from './components/JobList'
 import { JobDetail } from './components/JobDetail'
@@ -7,6 +8,7 @@ import { useIsDesktop } from './hooks/useMediaQuery'
 import { useJobPosts } from './hooks/useJobPosts'
 
 function App() {
+  const intl = useIntl()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('')
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null)
@@ -37,8 +39,8 @@ function App() {
   }, [])
 
   const pageTitle = searchQuery
-    ? `Results for ${searchQuery} jobs`
-    : 'Job Search'
+    ? intl.formatMessage({ id: 'app.pageTitle.withQuery' }, { query: searchQuery })
+    : intl.formatMessage({ id: 'app.pageTitle.default' })
 
   const jobListProps = {
     jobs: allJobs,
@@ -81,7 +83,7 @@ function App() {
                 <JobDetail jobId={selectedJobId} />
               ) : (
                 <p className="text-sm text-text-muted text-center py-12">
-                  Select a job to view details
+                  {intl.formatMessage({ id: 'app.detail.placeholder' })}
                 </p>
               )}
             </div>

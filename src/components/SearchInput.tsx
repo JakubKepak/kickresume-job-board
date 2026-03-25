@@ -4,6 +4,7 @@ interface SearchInputProps extends Omit<ComponentProps<'input'>, 'onChange'> {
   value: string
   onChange: (value: string) => void
   onClear?: () => void
+  clearLabel?: string
   icon?: React.ReactNode
 }
 
@@ -11,6 +12,7 @@ export function SearchInput({
   value,
   onChange,
   onClear,
+  clearLabel,
   icon,
   className = '',
   ...props
@@ -34,7 +36,7 @@ export function SearchInput({
           type="button"
           onClick={onClear}
           className="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-text-muted hover:text-text-secondary"
-          aria-label="Clear search"
+          aria-label={clearLabel}
         >
           <svg
             width={18}

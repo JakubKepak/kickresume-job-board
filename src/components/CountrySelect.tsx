@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { useCountries } from '../hooks/useCountries'
 
 interface CountrySelectProps {
@@ -8,11 +9,13 @@ interface CountrySelectProps {
 }
 
 export function CountrySelect({ value, onChange, className = '' }: CountrySelectProps) {
+  const intl = useIntl()
   const { data: countries, isPending } = useCountries()
   const measureRef = useRef<HTMLSpanElement>(null)
   const [selectWidth, setSelectWidth] = useState<number | undefined>(undefined)
 
-  const displayText = value || 'All countries'
+  const allCountriesLabel = intl.formatMessage({ id: 'country.all' })
+  const displayText = value || allCountriesLabel
 
   useEffect(() => {
     if (measureRef.current) {
@@ -35,9 +38,9 @@ export function CountrySelect({ value, onChange, className = '' }: CountrySelect
         disabled={isPending}
         style={selectWidth ? { width: selectWidth } : undefined}
         className="appearance-none bg-white text-text-primary text-sm font-medium py-2.5 pl-4 pr-10 rounded-lg border border-card-border focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral cursor-pointer"
-        aria-label="Filter by country"
+        aria-label={intl.formatMessage({ id: 'country.filterLabel' })}
       >
-        <option value="">All countries</option>
+        <option value="">{allCountriesLabel}</option>
         {countries?.map((country) => (
           <option key={country} value={country}>
             {country}

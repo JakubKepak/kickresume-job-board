@@ -1,4 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary'
+import { useIntl } from 'react-intl'
 import { useFormattedJobDetail } from '../hooks/useFormattedJobDetail'
 import { JobCardHeader } from './JobCardHeader'
 import { JobDetailBody } from './JobDetailBody'
@@ -11,6 +12,7 @@ interface JobDetailProps {
 }
 
 function JobDetailContent({ jobId }: JobDetailProps) {
+  const intl = useIntl()
   const { data: job, formatted, isPending, isError, error, refetch } = useFormattedJobDetail(jobId)
 
   if (isPending) {
@@ -37,7 +39,7 @@ function JobDetailContent({ jobId }: JobDetailProps) {
             variant="secondary"
             onClick={() => window.open(job.url, '_blank', 'noopener,noreferrer')}
           >
-            Apply
+            {intl.formatMessage({ id: 'jobDetail.apply' })}
           </Button>
         }
       />

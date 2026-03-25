@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useIntl } from 'react-intl'
 import { Button } from './Button'
 import { CountrySelect } from './CountrySelect'
 import { SearchInput } from './SearchInput'
@@ -11,6 +12,7 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarProps) {
+  const intl = useIntl()
   const [inputValue, setInputValue] = useState(initialQuery)
   const [country, setCountry] = useState(initialCountry)
 
@@ -34,7 +36,7 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
           value={inputValue}
           onChange={setInputValue}
           icon={<SearchIcon />}
-          placeholder="Job title, keyword, or company"
+          placeholder={intl.formatMessage({ id: 'search.placeholder' })}
           className="flex-1"
         />
 
@@ -44,7 +46,7 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
           className="shrink-0"
         />
 
-        <Button type="submit">Search</Button>
+        <Button type="submit">{intl.formatMessage({ id: 'search.submit' })}</Button>
       </div>
 
       {/* Mobile: stacked layout */}
@@ -53,12 +55,13 @@ export function SearchBar({ initialQuery, initialCountry, onSearch }: SearchBarP
           value={inputValue}
           onChange={setInputValue}
           onClear={handleClear}
-          placeholder="Job title, keyword, or company"
+          clearLabel={intl.formatMessage({ id: 'search.clear' })}
+          placeholder={intl.formatMessage({ id: 'search.placeholder' })}
         />
 
         <CountrySelect value={country} onChange={setCountry} className="w-full" />
 
-        <Button type="submit" className="w-full">Search</Button>
+        <Button type="submit" className="w-full">{intl.formatMessage({ id: 'search.submit' })}</Button>
       </div>
     </form>
   )

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import { useIntl } from 'react-intl'
 import { ErrorBoundary } from 'react-error-boundary'
 import type { JobPostSummary } from '../schemas/api'
 import { JobCard } from './JobCard'
@@ -33,6 +34,7 @@ export function JobList({
   selectedJobId,
   onSelectJob,
 }: JobListProps) {
+  const intl = useIntl()
   const sentinelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export function JobList({
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <p className="text-sm text-text-secondary mb-4">
-        {totalCount.toLocaleString()} search results
+        {intl.formatMessage({ id: 'jobList.resultCount' }, { count: totalCount })}
       </p>
 
       <div className="flex flex-col gap-3">
@@ -89,13 +91,13 @@ export function JobList({
 
       {!hasNextPage && jobs.length > 0 && (
         <p className="text-xs text-text-muted text-center py-4">
-          No more results
+          {intl.formatMessage({ id: 'jobList.noMore' })}
         </p>
       )}
 
       {jobs.length === 0 && (
         <p className="text-sm text-text-secondary text-center py-12">
-          No jobs found. Try a different search.
+          {intl.formatMessage({ id: 'jobList.empty' })}
         </p>
       )}
     </ErrorBoundary>

@@ -1,3 +1,5 @@
+import { useIntl } from 'react-intl'
+
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg'
   className?: string
@@ -10,6 +12,8 @@ const sizeClasses = {
 } as const
 
 function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
+  const intl = useIntl()
+
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <svg
@@ -17,7 +21,7 @@ function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        aria-label="Loading"
+        aria-label={intl.formatMessage({ id: 'loading.label' })}
       >
         <circle
           className="opacity-25"
