@@ -19,14 +19,7 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <IntlProvider
-      locale={DEFAULT_LOCALE}
-      messages={messages[DEFAULT_LOCALE]}
-      defaultRichTextElements={{
-        b: (chunks) => <strong>{chunks}</strong>,
-        i: (chunks) => <em>{chunks}</em>,
-      }}
-    >
+    <IntlProvider locale={DEFAULT_LOCALE} messages={messages[DEFAULT_LOCALE]}>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <App />

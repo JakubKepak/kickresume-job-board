@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import DOMPurify from 'dompurify'
 import { Pill } from './Pill'
 import { LocationIcon } from './icons/LocationIcon'
 import { BriefcaseIcon } from './icons/BriefcaseIcon'
@@ -40,7 +41,7 @@ export function JobDetailBody({
 
       <div
         className="text-sm text-text-secondary leading-relaxed"
-        dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(descriptionHtml) }}
       />
 
       {postedDate && (
