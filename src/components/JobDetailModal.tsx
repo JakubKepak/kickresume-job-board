@@ -60,8 +60,7 @@ function ModalContent({ jobId, onClose }: JobDetailModalProps) {
       </div>
 
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex gap-2.5 backdrop-blur-lg"
-        style={{ background: 'var(--gradient-bottom-bar)' }}
+        className="fixed bottom-0 left-0 right-0 z-50 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex gap-2.5 backdrop-blur-lg [background:var(--gradient-bottom-bar)]"
       >
         <Button variant="outline" onClick={onClose} className="w-1/3">
           {intl.formatMessage({ id: 'jobDetail.back' })}
